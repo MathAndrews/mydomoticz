@@ -1,0 +1,29 @@
+app:
+  container_name: domoz_app_1
+  build: .
+  ports:
+  - 155:80
+  links:
+  - mariadb:db
+  environment:
+  - MYSQL_DATABASE=web
+  - MYSQL_USER=admin
+  - MYSQL_PASSWORD=Neu1ones1602
+  - MYSQL_ROOT_PASSWORD=Neu1ones1602
+  volumes:
+  - ./app:/var/www/html
+  - ./docker-php-entrypoint:/usr/local/bin/docker-php-entrypoint
+
+  entrypoint: /usr/local/bin/docker-php-entrypoint
+mariadb:
+    image: mariadb:10.1
+    container_name: domoz_mariadb_1
+    environment:
+    - MYSQL_DATABASE=web
+    - MYSQL_USER=admin
+    - MYSQL_PASSWORD=Neu1ones1602
+    - MYSQL_ROOT_PASSWORD=Neu1ones1602
+    volumes:
+    - /var/lib/mysql
+    ports:
+    - 15533:3306
