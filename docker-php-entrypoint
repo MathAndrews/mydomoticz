@@ -1,41 +1,41 @@
 #!/bin/sh
 set -e
 
-# Composer install
-composer install --no-interaction --no-progress --prefer-dist
-
 # NPM install
 npm install --prefix ./backend/web
 npm install --prefix ./frontend/web
+
+pwd
+
 
 # Yii init script for Development
 php init --env=Development --overwrite=y
 
 # Yii migration up when database is alive
-while ! mysqladmin -u $MYSQL_USER -p$MYSQL_PASSWORD ping -h 'db' --silent; do sleep 1; done
-
-php yii migrate --migrationPath=@yii/rbac/migrations  --interactive=0
-
-php yii migrate/up --migrationPath=@vendor/dektrium/yii2-user/migrations  --interactive=0
-
-php yii migrate --interactive=0
-
-mkdir -p ./backend/web/temp
-
-chmod -R 774 ./frontend/web/photo
-chmod -R 774 ./frontend/web/file
-chmod -R 774 ./frontend/runtime
-chmod -R 774 ./backend/runtime
-chmod -R 774 ./backend/web/temp
-chgrp -hR www-data ./frontend/web/photo
-chgrp -hR www-data ./frontend/web/file
-chgrp -hR www-data ./frontend/runtime
-chgrp -hR www-data ./backend/runtime
-chown -hR www-data ./backend/web/temp
-
+#while ! mysqladmin -u $MYSQL_USER -p$MYSQL_PASSWORD ping -h 'db' --silent; do sleep 1; done
+#
+#php yii migrate --migrationPath=@yii/rbac/migrations  --interactive=0
+#
+#php yii migrate/up --migrationPath=@vendor/dektrium/yii2-user/migrations  --interactive=0
+#
+#php yii migrate --interactive=0
+#
+#mkdir -p ./backend/web/temp
+#
+#chmod -R 774 ./frontend/web/photo
+#chmod -R 774 ./frontend/web/file
+#chmod -R 774 ./frontend/runtime
+#chmod -R 774 ./backend/runtime
+#chmod -R 774 ./backend/web/temp
+#chgrp -hR www-data ./frontend/web/photo
+#chgrp -hR www-data ./frontend/web/file
+#chgrp -hR www-data ./frontend/runtime
+#chgrp -hR www-data ./backend/runtime
+#chown -hR www-data ./backend/web/temp
+#
 # Grunt sync for Development
-npm run dev --prefix ./backend/web
-npm run dev --prefix ./frontend/web
+#npm run dev --prefix ./backend/web
+#npm run dev --prefix ./frontend/web
 
 # first arg is `-f` or `--some-option`
 if [ "${1#-}" != "$1" ]; then

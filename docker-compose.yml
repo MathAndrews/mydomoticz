@@ -12,9 +12,6 @@ app:
   - MYSQL_ROOT_PASSWORD=Neu1ones1602
   volumes:
   - ./app:/var/www/html
-  - ./docker-php-entrypoint:/usr/local/bin/docker-php-entrypoint
-
-  entrypoint: /usr/local/bin/docker-php-entrypoint
 mariadb:
     image: mariadb:10.1
     container_name: domoz_mariadb_1
