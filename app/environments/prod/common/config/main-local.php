@@ -1,16 +1,21 @@
 <?php
+
+$MYSQL_DATABASE = 'mandrews_domoticz';
+$MYSQL_USER = 'mandrews_domoticz';
+$MYSQL_PASSWORD = 'Neu1ones1602';
+
 return [
     'components' => [
-        'db' => [
-            'class' => 'yii\db\Connection',
-            'dsn' => 'mysql:host=localhost;dbname=yii2advanced',
-            'username' => 'root',
-            'password' => '',
-            'charset' => 'utf8',
-        ],
         'mailer' => [
             'class' => 'yii\swiftmailer\Mailer',
             'viewPath' => '@common/mail',
+        ],
+        'db' => [
+            'class' => 'yii\db\Connection',
+            'dsn' => 'mysql:host=localhost;dbname=' . $MYSQL_DATABASE,
+            'username' => $MYSQL_USER,
+            'password' => $MYSQL_PASSWORD,
+            'charset' => 'utf8',
         ],
     ],
 ];
