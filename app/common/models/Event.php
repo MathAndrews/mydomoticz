@@ -51,7 +51,7 @@ class Event extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'module_id' => 'Module ID',
+            'module_id' => 'Module',
             'status' => 'Status',
             'type' => 'Type',
             'date' => 'Date',

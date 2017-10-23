@@ -43,7 +43,7 @@ COPY .bashrc /root/.bashrc
 #RUN composer install --no-interaction --no-progress --prefer-dist --no-dev
 
 # Set custom PHP configuration
-#COPY php.ini /usr/local/etc/php/php.ini
+COPY php.ini /usr/local/etc/php/php.ini
 
 # Set custom PHP configuration
 #COPY docker-php-entrypoint /usr/local/bin/docker-php-entrypoint
